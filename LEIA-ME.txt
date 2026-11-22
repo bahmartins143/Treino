@@ -1,0 +1,26 @@
+# Meu treino semanal — versão web instalável
+
+## O que está incluído
+- Painel responsivo para celular.
+- Treinos organizados por dia.
+- Checklist de exercícios com marcações salvas no navegador.
+- Mobilidade, aquecimento e orientações.
+- Progressão de corrida ao final, com ressalva para avaliação do joelho.
+
+## Como publicar para abrir pelo Safari e adicionar à Tela de Início
+Um PWA precisa ser servido por HTTPS (ou localhost). Este pacote não está hospedado publicamente.
+
+### Opção simples: GitHub Pages
+1. Crie ou entre em uma conta no GitHub.
+2. Crie um repositório público novo.
+3. Envie todos os arquivos desta pasta, mantendo a estrutura (`index.html`, `manifest.webmanifest`, `sw.js` e `icons/`).
+4. Nas configurações do repositório, abra **Pages** e habilite a publicação a partir da branch principal (`main`), pasta `/root`.
+5. Aguarde a URL publicada pelo GitHub Pages.
+
+### Adicionar à Tela de Início no iPhone
+1. Abra a URL publicada no Safari.
+2. Toque em **Compartilhar**.
+3. Escolha **Adicionar à Tela de Início**.
+4. Confirme em **Adicionar**.
+
+As marcações ficam salvas no navegador/aparelho. Se limpar os dados do Safari ou trocar de aparelho, o histórico local pode ser perdido.

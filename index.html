@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#7057a8">
+  <meta name="description" content="Painel semanal de musculação, mobilidade, beach tennis e corrida.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <title>Meu treino semanal</title>
+  <style>
+    :root{--purple:#7057a8;--pink:#d96b91;--ink:#203044;--muted:#667085;--bg:#f5f4f8;--card:#fff;--line:#e6e2ed;--green:#25835e}
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+    header{background:linear-gradient(135deg,#59458f,#8b70b7);color:white;padding:24px 18px 20px;border-radius:0 0 24px 24px}
+    header h1{font-size:25px;line-height:1.15;margin:0 0 7px} header p{margin:0;color:#f0eafa;font-size:13px}
+    main{max-width:760px;margin:0 auto;padding:14px 13px 40px}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:-1px}
+    .stat,.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:13px}
+    .stat b{display:block;color:var(--purple);font-size:20px}.stat span{font-size:11px;color:var(--muted)}
+    h2{font-size:18px;margin:20px 2px 10px} h3{font-size:16px;margin:0}
+    .days{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+    button{font:inherit;cursor:pointer}
+    .daybtn{border:1px solid var(--line);background:white;color:var(--ink);padding:10px 5px;border-radius:11px;font-size:13px}
+    .daybtn.active{background:var(--purple);border-color:var(--purple);color:white;font-weight:700}
+    .card{margin-top:12px}
+    .topline{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+    .tag{font-size:11px;background:#f2eef9;color:var(--purple);padding:5px 8px;border-radius:999px;white-space:nowrap}
+    .muted{color:var(--muted);font-size:13px}
+    .progress{height:8px;background:#eeeaf3;border-radius:9px;overflow:hidden;margin:10px 0 3px}
+    .bar{height:100%;width:0;background:var(--green);transition:width .2s}
+    .warm{background:#f7f3fb;border-radius:12px;padding:11px;margin:12px 0;font-size:13px}
+    .exercise{display:flex;gap:10px;align-items:flex-start;padding:12px 0;border-bottom:1px solid #efedf2}
+    .exercise:last-child{border:0}.exercise input{width:21px;height:21px;accent-color:var(--green);margin:2px 0 0}
+    .exercise label{flex:1;cursor:pointer}.exercise strong{display:block;font-size:14px}.exercise small{color:var(--muted)}
+    .note{border-left:3px solid var(--pink);padding:9px 11px;background:#fff7fa;border-radius:7px;font-size:13px;margin-top:12px}
+    .action{border:0;background:var(--purple);color:white;border-radius:10px;padding:10px 13px;font-weight:650}
+    .secondary{border:1px solid var(--line);background:white;color:var(--ink);border-radius:10px;padding:9px 12px}
+    .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    details{background:white;border:1px solid var(--line);border-radius:14px;padding:13px;margin-top:12px}
+    summary{font-weight:700;cursor:pointer}
+    table{border-collapse:collapse;width:100%;font-size:13px;margin-top:10px}td,th{padding:9px 7px;border-bottom:1px solid var(--line);text-align:left}th{color:var(--purple)}
+    .warning{background:#fff6e8;border:1px solid #f0dfbd;border-radius:13px;padding:12px;font-size:13px;margin-top:12px}
+    footer{text-align:center;color:var(--muted);font-size:11px;padding:20px 5px}
+    @media(min-width:600px){header{padding:30px max(22px,calc((100vw - 720px)/2)) 24px}header h1{font-size:30px}.days{grid-template-columns:repeat(7,1fr)}}
+  </style>
+</head>
+<body>
+<header>
+  <h1>Meu treino semanal</h1>
+  <p>Glúteos em foco • Beach tennis • Mobilidade • Corrida</p>
+</header>
+<main>
+  <section class="stats">
+    <div class="stat"><b>2×</b><span>Glúteos / semana</span></div>
+    <div class="stat"><b>2×</b><span>Beach tennis</span></div>
+    <div class="stat"><b>1</b><span>Dia de descanso</span></div>
+  </section>
+
+  <h2>Escolha o dia</h2>
+  <nav class="days" id="days" aria-label="Dias da semana"></nav>
+  <section class="card" id="workout" aria-live="polite"></section>
+
+  <details>
+    <summary>Mobilidade de quarta-feira — 15 a 20 min</summary>
+    <p class="muted">Faça duas voltas tranquilas. Uma terceira é opcional se estiver confortável. O objetivo é terminar mais solta, não cansada.</p>
+    <table><thead><tr><th>Exercício</th><th>Volume</th><th>Dica</th></tr></thead><tbody>
+      <tr><td>Quadril 90/90</td><td>30 s/lado</td><td>Alterne os lados devagar, sem forçar.</td></tr>
+      <tr><td>Rotação torácica em quatro apoios</td><td>8/lado</td><td>Gire o tronco sem forçar a lombar.</td></tr>
+      <tr><td>Tornozelo na parede</td><td>10/perna</td><td>Mantenha o calcanhar apoiado.</td></tr>
+      <tr><td>Ponte de glúteos</td><td>12 repetições</td><td>Sem arquear a lombar.</td></tr>
+      <tr><td>Bird dog</td><td>8–10/lado</td><td>Mantenha o tronco estável.</td></tr>
+    </tbody></table>
+  </details>
+
+  <details>
+    <summary>Aquecimento antes dos outros treinos</summary>
+    <ul class="muted">
+      <li><b>Glúteos:</b> 5–8 min leves, mobilidade de quadril, 12 pontes e 10 abduções leves; faça séries de preparação antes da carga de trabalho.</li>
+      <li><b>Superiores:</b> 5 min leves, círculos de braços, aberturas com elástico e uma série leve dos primeiros exercícios.</li>
+      <li><b>Beach tennis:</b> 5–10 min progressivos com deslocamentos leves e mobilidade de tornozelos, quadris e ombros.</li>
+      <li><b>Corrida:</b> somente após avaliação e liberação do joelho; comece com caminhada progressiva.</li>
+    </ul>
+    <p class="muted">Alongamento longo antes da musculação não é obrigatório. Priorize aquecimento e mobilidade dinâmica.</p>
+  </details>
+
+  <details>
+    <summary>Progressão da corrida — 3 km a 5 km</summary>
+    <div class="warning"><b>Atenção ao joelho:</b> você relatou desconforto durante a corrida. Não aumente a distância nem insista correndo com dor. Procure avaliação com fisioterapeuta ou médico antes de retomar a progressão. A tabela é apenas uma referência condicional, não uma meta para cumprir com dor.</div>
+    <table><thead><tr><th>Período</th><th>Distância de sábado</th></tr></thead><tbody>
+      <tr><td>23–29/11</td><td>Até 3 km, somente se confortável e sem dor</td></tr>
+      <tr><td>30/11–06/12</td><td>3–3,5 km</td></tr>
+      <tr><td>07–13/12</td><td>3,5–4 km</td></tr>
+      <tr><td>14–20/12</td><td>4–4,5 km</td></tr>
+      <tr><td>21–27/12</td><td>Manter até 4,5 km</td></tr>
+      <tr><td>28–31/12</td><td>Até 5 km, somente se liberada e sem dor</td></tr>
+    </tbody></table>
+    <p class="muted">Segunda ou quinta à noite: no máximo uma corrida extra curta e leve, somente após liberação e sem dor. Não é obrigatória.</p>
+  </details>
+
+  <details>
+    <summary>Orientações gerais</summary>
+    <ul class="muted">
+      <li>Musculação: em geral, termine as séries com 1–3 repetições possíveis ainda “na reserva”.</li>
+      <li>Descanse cerca de 2 min nos exercícios principais e 60–90 s nos acessórios.</li>
+      <li>Aumente a carga quando completar o limite superior das repetições com técnica estável.</li>
+      <li>Interrompa ou adapte exercícios que provoquem dor no joelho.</li>
+      <li>Recuperação, sono e alimentação suficiente fazem parte do progresso.</li>
+    </ul>
+  </details>
+  <footer>As marcações ficam salvas neste navegador neste aparelho. O plano não substitui avaliação presencial; peça ao profissional de educação física para conferir técnica e cargas.</footer>
+</main>
+<script>
+const plans = [
+ {day:"Segunda",title:"Glúteos A — hipertrofia",time:"50–60 min",warm:"5 min de atividade leve + mobilidade de quadril + 12 pontes de glúteos + 10 abduções leves.",items:[["Elevação pélvica","4 séries × 8–12"],["Stiff com halteres","3 séries × 10–12"],["Cadeira abdutora","3 séries × 15–20"],["Coice na polia","3 séries × 12–15 por perna"],["Mesa flexora","3 séries × 10–12"]],note:"Corrida à noite não é necessária nesta fase. Só considere após avaliação e liberação do joelho."},
+ {day:"Terça",title:"Superiores + beach tennis",time:"45–55 min",warm:"5 min leves + círculos de braços + aberturas com elástico.",items:[["Puxada frontal","3 séries × 12"],["Remada baixa","3 séries × 12"],["Supino máquina","3 séries × 12"],["Elevação lateral","2 séries × 12"],["Tríceps na polia","2 séries × 12"],["Rosca direta","2 séries × 12"]],note:"Beach tennis à noite. Faça aquecimento dinâmico antes de jogar."},
+ {day:"Quarta",title:"Mobilidade + beach tennis",time:"15–20 min",warm:"Faça duas voltas tranquilas. Uma terceira é opcional se estiver confortável.",items:[["Mobilidade de quadril 90/90","30 s por lado"],["Rotação torácica em quatro apoios","8 por lado"],["Mobilidade de tornozelo na parede","10 por perna"],["Ponte de glúteos","12 repetições"],["Bird dog","8–10 por lado"]],note:"Beach tennis à noite. A mobilidade não deve causar dor nem gerar cansaço."},
+ {day:"Quinta",title:"Glúteos B — hipertrofia",time:"50–60 min",warm:"5 min leves + mobilidade de quadril + 12 pontes de glúteos + 10 abduções leves.",items:[["Elevação pélvica (variação/carga moderada)","3 séries × 10–12"],["Pull through na polia","3 séries × 12"],["Glúteo máquina","3 séries × 12–15"],["Cadeira abdutora","3 séries × 15–20"],["Cadeira flexora","3 séries × 12"]],note:"Corrida à noite é opcional somente após avaliação e liberação. Priorize a recuperação."},
+ {day:"Sexta",title:"Superiores + abdômen",time:"45–55 min",warm:"5 min leves + círculos de braços + rotações torácicas.",items:[["Remada articulada","3 séries × 12"],["Supino inclinado máquina","3 séries × 12"],["Puxada aberta","3 séries × 12"],["Desenvolvimento máquina","2 séries × 12"],["Pallof press","3 séries × 10–12 por lado"],["Prancha lateral","2 séries × 20–30 s por lado"]],note:"Treine com controle e deixe a musculatura recuperar."},
+ {day:"Sábado",title:"Corrida principal",time:"Conforme liberação do joelho",warm:"Quando liberada: 5–10 min de caminhada progressiva e movimentos dinâmicos leves.",items:[["Aquecimento caminhando","5–10 min"],["Corrida leve","Somente se liberada e sem dor"],["Volta à calma caminhando","5 min"]],note:"Você relatou dor no joelho durante a corrida. Não insista nem aumente a distância antes de avaliação profissional."},
+ {day:"Domingo",title:"Descanso",time:"Dia livre",warm:"Sem treino programado.",items:[["Recuperação","Sono, alimentação regular e hidratação"],["Preparação da semana","Organizar horários e equipamentos"]],note:"Descanso faz parte do desenvolvimento muscular e do condicionamento."}
+];
+const storageKey="meuTreinoSemanal-v1";
+let checks={};
+try{checks=JSON.parse(localStorage.getItem(storageKey)||"{}")}catch(e){}
+let current=0;
+const daysEl=document.getElementById("days"), workoutEl=document.getElementById("workout");
+function save(){try{localStorage.setItem(storageKey,JSON.stringify(checks))}catch(e){}}
+function render(){
+ daysEl.innerHTML="";
+ plans.forEach((p,i)=>{const b=document.createElement("button");b.className="daybtn"+(i===current?" active":"");b.textContent=p.day;b.setAttribute("aria-pressed",i===current);b.onclick=()=>{current=i;render()};daysEl.appendChild(b)});
+ const p=plans[current], done=p.items.filter((_,i)=>checks[p.day+"-"+i]).length;
+ let html=`<div class="topline"><div><h3>${p.day} — ${p.title}</h3><div class="muted">${p.time}</div></div><span class="tag">${done}/${p.items.length} feitos</span></div>
+ <div class="progress"><div class="bar" style="width:${done/p.items.length*100}%"></div></div>
+ <div class="warm"><b>Aquecimento / preparação</b><br>${p.warm}</div><h3>Checklist do treino</h3>`;
+ p.items.forEach((it,i)=>{const key=p.day+"-"+i, checked=!!checks[key];html+=`<div class="exercise"><input type="checkbox" id="ex${i}" data-key="${key}" ${checked?"checked":""}><label for="ex${i}"><strong>${it[0]}</strong><small>${it[1]}</small></label></div>`});
+ html+=`<div class="note"><b>Observação:</b> ${p.note}</div><div class="row"><button class="secondary" id="clear">Desmarcar dia</button><button class="action" id="next">Próximo dia →</button></div>`;
+ workoutEl.innerHTML=html;
+ workoutEl.querySelectorAll('input[type="checkbox"]').forEach(el=>el.addEventListener("change",e=>{checks[e.target.dataset.key]=e.target.checked;save();render()}));
+ document.getElementById("clear").onclick=()=>{p.items.forEach((_,i)=>delete checks[p.day+"-"+i]);save();render()};
+ document.getElementById("next").onclick=()=>{current=(current+1)%plans.length;render();window.scrollTo({top:0,behavior:"smooth"})};
+}
+render();
+if("serviceWorker" in navigator && location.protocol.startsWith("http")) window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
+</script>
+</body></html>
